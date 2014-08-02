@@ -4,7 +4,7 @@
   <title><![CDATA[Oukq的博客]]></title>
   <link href="http://fishball-ou.github.io/atom.xml" rel="self"/>
   <link href="http://fishball-ou.github.io/"/>
-  <updated>2014-08-02T12:14:45+08:00</updated>
+  <updated>2014-08-01T22:35:08+08:00</updated>
   <id>http://fishball-ou.github.io/</id>
   <author>
     <name><![CDATA[oukangquan]]></name>
@@ -12,29 +12,5 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[第一篇blog]]></title>
-    <link href="http://fishball-ou.github.io/blog/2014/08/02/the-first-post/"/>
-    <updated>2014-08-02T11:22:03+08:00</updated>
-    <id>http://fishball-ou.github.io/blog/2014/08/02/the-first-post</id>
-    <content type="html"><![CDATA[<h1>hello!</h1>
-
-<ul>
-<li>这是我的第一篇博客，testing，tesing！
-<br></li>
-</ul>
-
-
-<pre><code>
-class test{
-        public static void main(String[] args){
-        System.out.println("Hello World!");
-    }
-}
-</code></pre>
-
-]]></content>
-  </entry>
   
 </feed>
