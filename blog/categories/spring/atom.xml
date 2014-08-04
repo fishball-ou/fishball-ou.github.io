@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Oukq的博客]]></title>
-  <link href="http://fishball-ou.github.io/atom.xml" rel="self"/>
+  <title><![CDATA[Category: spring | Oukq的博客]]></title>
+  <link href="http://fishball-ou.github.io/blog/categories/spring/atom.xml" rel="self"/>
   <link href="http://fishball-ou.github.io/"/>
   <updated>2014-08-04T14:02:56+08:00</updated>
   <id>http://fishball-ou.github.io/</id>
@@ -20,30 +20,6 @@
     <id>http://fishball-ou.github.io/blog/2014/08/04/org-dot-springframework-dot-dao-dot-support-dot-daosupport-cannot-be-resolved</id>
     <content type="html"><![CDATA[<p>在继承HibernateDaoSupport时报org.springframework.dao.support.DaoSupport cannot be resolved错。
 原因是整合时候没导入spring-tx.RELEASE.jar包，导入即可。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[第一篇blog]]></title>
-    <link href="http://fishball-ou.github.io/blog/2014/08/02/the-first-post/"/>
-    <updated>2014-08-02T11:22:03+08:00</updated>
-    <id>http://fishball-ou.github.io/blog/2014/08/02/the-first-post</id>
-    <content type="html"><![CDATA[<h1>hello!</h1>
-
-<ul>
-<li>这是我的第一篇博客，testing，tesing！
-<br></li>
-</ul>
-
-
-<pre><code>
-class Test{
-        public static void main(String[] args){
-        System.out.println("Hello World!");
-    }
-}
-</code></pre>
-
 ]]></content>
   </entry>
   
