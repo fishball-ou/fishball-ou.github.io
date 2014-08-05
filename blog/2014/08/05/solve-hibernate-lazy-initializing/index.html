@@ -1,24 +1,83 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Oukq的博客]]></title>
-  <link href="http://fishball-ou.github.io/atom.xml" rel="self"/>
-  <link href="http://fishball-ou.github.io/"/>
-  <updated>2014-08-05T14:04:40+08:00</updated>
-  <id>http://fishball-ou.github.io/</id>
-  <author>
-    <name><![CDATA[oukangquan]]></name>
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>解决Hibernate的延迟加载 - Oukq的博客</title>
+	<meta name="author" content="oukangquan">
+
+	
+	<meta name="description" content="为了解决不必要的查询，Hibernate的联接查询在默认情况下采用延迟加载，也就是懒加载，在需要数据的情况下再查询。如果在controller层，使用将数据转换成JSON字符串时，session就已经关闭了，再查询时会报错，session closed。
+查了几遍资料
+有几种思路： &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Oukq的博客" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Oukq的博客</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="https://www.google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:fishball-ou.github.io">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
     
-  </author>
-  <generator uri="http://octopress.org/">Octopress</generator>
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+    
+	</div>
+	<form class="search" action="https://www.google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:fishball-ou.github.io">
+	</form>
+</nav>
 
-  
-  <entry>
-    <title type="html"><![CDATA[解决Hibernate的延迟加载]]></title>
-    <link href="http://fishball-ou.github.io/blog/2014/08/05/solve-hibernate-lazy-initializing/"/>
-    <updated>2014-08-05T09:23:09+08:00</updated>
-    <id>http://fishball-ou.github.io/blog/2014/08/05/solve-hibernate-lazy-initializing</id>
-    <content type="html"><![CDATA[<p><p>为了解决不必要的查询，Hibernate的联接查询在默认情况下采用延迟加载，也就是懒加载，在需要数据的情况下再查询。如果在controller层，使用将数据转换成JSON字符串时，session就已经关闭了，再查询时会报错，session closed。<p>
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">解决Hibernate的延迟加载</h2>
+	<div class="entry-content"><p><p>为了解决不必要的查询，Hibernate的联接查询在默认情况下采用延迟加载，也就是懒加载，在需要数据的情况下再查询。如果在controller层，使用将数据转换成JSON字符串时，session就已经关闭了，再查询时会报错，session closed。<p>
 查了几遍资料
 有几种思路：</p>
 
@@ -133,41 +192,65 @@
 <p>clone的方法，返回对象时clone出来一个新的对象，实现cloneable也可以，直接深度克隆也是大大的可以的。</p>
 
 <p>反正controller层只处理传参，所有处理都在service层，受spring的事务管理(声明式事务)，在service层就JSON.toJsonString了</p>
-]]></content>
-  </entry>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
   
-  <entry>
-    <title type="html"><![CDATA[org.springframework.dao.support.DaoSupport cannot be resolved]]></title>
-    <link href="http://fishball-ou.github.io/blog/2014/08/04/org-dot-springframework-dot-dao-dot-support-dot-daosupport-cannot-be-resolved/"/>
-    <updated>2014-08-04T11:49:54+08:00</updated>
-    <id>http://fishball-ou.github.io/blog/2014/08/04/org-dot-springframework-dot-dao-dot-support-dot-daosupport-cannot-be-resolved</id>
-    <content type="html"><![CDATA[<p>在继承HibernateDaoSupport时报org.springframework.dao.support.DaoSupport cannot be resolved错。
-原因是整合时候没导入spring-tx.RELEASE.jar包，导入即可。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[第一篇blog]]></title>
-    <link href="http://fishball-ou.github.io/blog/2014/08/02/the-first-post/"/>
-    <updated>2014-08-02T11:22:03+08:00</updated>
-    <id>http://fishball-ou.github.io/blog/2014/08/02/the-first-post</id>
-    <content type="html"><![CDATA[<h1>hello!</h1>
-
-<ul>
-<li>这是我的第一篇博客，testing，tesing！
-<br></li>
-</ul>
 
 
-<pre><code>
-class Test{
-        public static void main(String[] args){
-        System.out.println("Hello World!");
-    }
-}
-</code></pre>
+<time datetime="2014-08-05T09:23:09+08:00" pubdate data-updated="true">Aug 5<sup>th</sup>, 2014</time></div>
+	<div class="tags">
 
-]]></content>
-  </entry>
-  
-</feed>
+
+	<a class='category' href='/blog/categories/hibernate/'>hibernate</a>, <a class='category' href='/blog/categories/spring/'>spring</a>
+
+
+</div>
+	
+</div>
+</article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		<a class="addthis_button_tweet"></a>
+		
+		
+		
+	</div>
+	
+</div>
+
+
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2014
+
+    oukangquan
+
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+
+
+</body>
+</html>

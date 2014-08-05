@@ -7,8 +7,9 @@
 	<meta name="author" content="oukangquan">
 
 	
-	<meta name="description" content="在继承HibernateDaoSupport时报org.springframework.dao.support.DaoSupport cannot be resolved错。
-原因是整合时候没导入spring-tx.RELEASE.jar包，导入即可。 Aug 4th, 2014 &hellip;">
+	<meta name="description" content="为了解决不必要的查询，Hibernate的联接查询在默认情况下采用延迟加载，也就是懒加载，在需要数据的情况下再查询。如果在controller层，使用将数据转换成JSON字符串时，session就已经关闭了，再查询时会报错，session closed。
+查了几遍资料
+有几种思路： &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -75,6 +76,161 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2014/08/05/solve-hibernate-lazy-initializing/">
+		
+			解决Hibernate的延迟加载</a>
+	</h2>
+	<div class="entry-content">
+		<p><p>为了解决不必要的查询，Hibernate的联接查询在默认情况下采用延迟加载，也就是懒加载，在需要数据的情况下再查询。如果在controller层，使用将数据转换成JSON字符串时，session就已经关闭了，再查询时会报错，session closed。<p>
+查了几遍资料
+有几种思路：</p>
+
+<p>使用过滤器openSessionInViewFilter
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;filter&gt;
+</span><span class='line'>  &lt;filter-name&gt;openSessionInViewFilter&lt;/filter-name&gt;
+</span><span class='line'>  &lt;filter-class&gt;
+</span><span class='line'>      org.springframework.orm.hibernate3.support.OpenSessionInViewFilter
+</span><span class='line'>  &lt;/filter-class&gt;
+</span><span class='line'>  &lt;init-param&gt;
+</span><span class='line'>      &lt;param-name&gt;singleSession&lt;/param-name&gt;
+</span><span class='line'>      &lt;param-value&gt;true&lt;/param-value&gt;
+</span><span class='line'>  &lt;/init-param&gt;
+</span><span class='line'>  &lt;init-param&gt;
+</span><span class='line'>      &lt;param-name&gt;sessionFactoryBean&lt;/param-name&gt;
+</span><span class='line'>      &lt;param-value&gt;sessionFactory&lt;/param-value&gt;
+</span><span class='line'>  &lt;/init-param&gt;
+</span><span class='line'>&lt;/filter&gt;
+</span><span class='line'>&lt;filter-mapping&gt;
+</span><span class='line'>  &lt;filter-name&gt;openSessionInViewFilter&lt;/filter-name&gt;
+</span><span class='line'>  &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+</span><span class='line'>&lt;/filter-mapping&gt;</span></code></pre></td></tr></table></div></figure></p>
+
+<p>不过……也有说在springmvc时不太好用，在openSessionInViewFilter openSession时Flush mode是never，需要设置为auto，所以可以继承这个fliter重写filter的openSession和closeSession方法</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;filter&gt;
+</span><span class='line'>  &lt;filter-name&gt;solveLazyInitFilter&lt;/filter-name&gt;
+</span><span class='line'>  &lt;filter-class&gt;
+</span><span class='line'>      oukq.servlet.filter.SolveLazyInitFilter
+</span><span class='line'>  &lt;/filter-class&gt;
+</span><span class='line'>&lt;/filter&gt;
+</span><span class='line'>  &lt;filter-mapping&gt;
+</span><span class='line'>&lt;filter-name&gt;solveLazyInitFilter&lt;/filter-name&gt;
+</span><span class='line'>  &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+</span><span class='line'>&lt;/filter-mapping&gt;</span></code></pre></td></tr></table></div></figure></p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>public class SolveLazyInitFilter extends OpenSessionInViewFilter{
+</span><span class='line'>    public SolveLazyInitFilter() {
+</span><span class='line'>        super();
+</span><span class='line'>    }
+</span><span class='line'>  public void destroy() {
+</span><span class='line'>  }
+</span><span class='line'>  @Override
+</span><span class='line'>  protected Session getSession(SessionFactory sessionFactory) throws DataAccessResourceFailureException{
+</span><span class='line'>      Session session = SessionFactoryUtils.getSession(sessionFactory, true);
+</span><span class='line'>      setFlushMode(FlushMode.AUTO);
+</span><span class='line'>      FlushMode flushMode = getFlushMode();
+</span><span class='line'>      if(flushMode == null){
+</span><span class='line'>          session.setFlushMode(flushMode);
+</span><span class='line'>      }
+</span><span class='line'>      return session;
+</span><span class='line'>  }
+</span><span class='line'>  @Override
+</span><span class='line'>  protected void closeSession(Session session,SessionFactory sessionFactory){
+</span><span class='line'>      session.flush();
+</span><span class='line'>      SessionFactoryUtils.closeSession(session);
+</span><span class='line'>  }
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure></p>
+
+<p>第二种属于因地制宜了，采用Jackson可以使用@JsonInorg，不过那些懒加载的东西就是null了</p>
+
+<p>clone的方法，返回对象时clone出来一个新的对象，实现cloneable也可以，直接深度克隆也是大大的可以的。</p>
+
+<p>反正controller层只处理传参，所有处理都在service层，受spring的事务管理(声明式事务)，在service层就JSON.toJsonString了</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-05T09:23:09+08:00" pubdate data-updated="true">Aug 5<sup>th</sup>, 2014</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/hibernate/'>hibernate</a>, <a class='category' href='/blog/categories/spring/'>spring</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
