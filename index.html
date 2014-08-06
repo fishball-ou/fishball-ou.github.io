@@ -7,9 +7,7 @@
 	<meta name="author" content="oukangquan">
 
 	
-	<meta name="description" content="为了解决不必要的查询，Hibernate的联接查询在默认情况下采用延迟加载，也就是懒加载，在需要数据的情况下再查询。如果在controller层，使用将数据转换成JSON字符串时，session就已经关闭了，再查询时会报错，session closed。
-查了几遍资料
-有几种思路： &hellip;">
+	<meta name="description" content="今天在普通servlet工程那里使用@Controller的声明式注入，结果到连接到servlet时老报could not bound the servlet。就老是怀疑@Resource怎么老注入不进去呢，我最后的理解是servlet有tomcat自己创建，而不是spring创建。 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +74,47 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2014/08/06/about-springmvc/">
+		
+			有关SpringMVC的问题</a>
+	</h2>
+	<div class="entry-content">
+		<p>今天在普通servlet工程那里使用@Controller的声明式注入，结果到连接到servlet时老报could not bound the servlet。就老是怀疑@Resource怎么老注入不进去呢，我最后的理解是servlet有tomcat自己创建，而不是spring创建。不是有spring的dispathcer分发至，所以有这个问题。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-06T14:02:43+08:00" pubdate data-updated="true">Aug 6<sup>th</sup>, 2014</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/springmvc-spring/'>springmvc,spring</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">

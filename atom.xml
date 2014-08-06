@@ -4,7 +4,7 @@
   <title><![CDATA[Oukq的博客]]></title>
   <link href="http://fishball-ou.github.io/atom.xml" rel="self"/>
   <link href="http://fishball-ou.github.io/"/>
-  <updated>2014-08-05T23:15:44+08:00</updated>
+  <updated>2014-08-06T14:12:12+08:00</updated>
   <id>http://fishball-ou.github.io/</id>
   <author>
     <name><![CDATA[oukangquan]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[有关SpringMVC的问题]]></title>
+    <link href="http://fishball-ou.github.io/blog/2014/08/06/about-springmvc/"/>
+    <updated>2014-08-06T14:02:43+08:00</updated>
+    <id>http://fishball-ou.github.io/blog/2014/08/06/about-springmvc</id>
+    <content type="html"><![CDATA[<p>今天在普通servlet工程那里使用@Controller的声明式注入，结果到连接到servlet时老报could not bound the servlet。就老是怀疑@Resource怎么老注入不进去呢，我最后的理解是servlet有tomcat自己创建，而不是spring创建。不是有spring的dispathcer分发至，所以有这个问题。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[解决Hibernate的延迟加载]]></title>
