@@ -4,7 +4,7 @@
   <title><![CDATA[Oukq的博客]]></title>
   <link href="http://fishball-ou.github.io/atom.xml" rel="self"/>
   <link href="http://fishball-ou.github.io/"/>
-  <updated>2014-08-06T14:12:12+08:00</updated>
+  <updated>2014-08-06T21:39:44+08:00</updated>
   <id>http://fishball-ou.github.io/</id>
   <author>
     <name><![CDATA[oukangquan]]></name>
@@ -12,6 +12,17 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[今天一些困扰的问题]]></title>
+    <link href="http://fishball-ou.github.io/blog/2014/08/06/attentions/"/>
+    <updated>2014-08-06T21:35:37+08:00</updated>
+    <id>http://fishball-ou.github.io/blog/2014/08/06/attentions</id>
+    <content type="html"><![CDATA[<p>今天特傻的把资源文件放web-inf里了，傻傻的测能不能进action里啊，结果就是action的对应名称写错了，应该放webContent的放web-inf里面，以后引以为戒那！！
+</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[有关SpringMVC的问题]]></title>
