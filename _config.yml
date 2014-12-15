@@ -2,10 +2,10 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://yoursite.com
-title: My Octopress Blog
+url: http://fishball-ou.github.io
+title: Oukq的博客
 subtitle: A blogging framework for hackers.
-author: Your Name
+author: oukangquan
 simple_search: https://www.google.com/search
 description:
 
